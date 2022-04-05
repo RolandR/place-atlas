@@ -18,7 +18,7 @@
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 	For more information, see:
-	https://draemm.li/various/place-atlas/license.txt
+	http://place-atlas.stefanocoding.me/license.txt
 
 	========================================================================
 */
@@ -30,8 +30,8 @@ var previousZoomOrigin = [0, 0];
 var previousScaleZoomOrigin = [0, 0];
 
 var backgroundCanvas = document.createElement("canvas");
-backgroundCanvas.width = 1000;
-backgroundCanvas.height = 1000;
+backgroundCanvas.width = 2000;
+backgroundCanvas.height = 2000;
 var backgroundContext = backgroundCanvas.getContext("2d");
 
 function updateLines(){
@@ -162,12 +162,12 @@ function initView(){
 		highlightEntryFromUrl();
 	}*/
 
-	if(document.documentElement.clientWidth > 1000){
+	if(document.documentElement.clientWidth > 2000){
 		entriesListShown = true;
 		wrapper.className = wrapper.className.replace(/ listHidden/g, "");
 	}
 
-	if(document.documentElement.clientWidth < 1000){
+	if(document.documentElement.clientWidth < 2000){
 		entriesListShown = false;
 		wrapper.className += " listHidden";
 	}
@@ -282,6 +282,7 @@ function initView(){
 				html += "<a target=\"_blank\" href=https://reddit.com"+subreddit+">"+subreddit+"</a>";
 			}
 		}
+		html+="<p style='font-family: Dejavu Sans Mono, sans, Sans-Serif;'>id: "+entry.id+"</p>";
 		element.innerHTML += html;
 		
 		return element;
@@ -329,8 +330,8 @@ function initView(){
 			];
 
 			scaleZoomOrigin = [
-				 1000/2 - entry.center[0]// + container.offsetLeft
-				,1000/2 - entry.center[1]// + container.offsetTop
+				2000/2 - entry.center[0]// + container.offsetLeft
+				,2000/2 - entry.center[1]// + container.offsetTop
 			];
 
 			//console.log(zoomOrigin);
@@ -353,7 +354,7 @@ function initView(){
 				,(e.clientY - (container.clientHeight/2 - innerContainer.clientHeight/2 + zoomOrigin[1] + container.offsetTop))/zoom
 			];
 
-			if(pos[0] <= 1100 && pos[0] >= -100 && pos[0] <= 1100 && pos[0] >= -100){
+			if(pos[0] <= 2200 && pos[0] >= -100 && pos[0] <= 2200 && pos[0] >= -100){
 				var newHovered = [];
 				for(var i = 0; i < atlas.length; i++){
 					if(pointIsInPolygon(pos, atlas[i].path)){
@@ -538,8 +539,8 @@ function initView(){
 					]
 
 					scaleZoomOrigin = [
-						 1000/2  - this.entry.center[0]
-						,1000/2  - this.entry.center[1]
+						2000/2  - this.entry.center[0]
+						,2000/2  - this.entry.center[1]
 					]
 
 					//console.log(zoomOrigin);
@@ -578,8 +579,8 @@ function initView(){
 					]
 
 					scaleZoomOrigin = [
-						 1000/2  - this.entry.center[0]
-						,1000/2  - this.entry.center[1]
+						2000/2  - this.entry.center[0]
+						,2000/2  - this.entry.center[1]
 					]
 
 					previousZoomOrigin = [zoomOrigin[0], zoomOrigin[1]];
@@ -760,12 +761,12 @@ function initView(){
 
 		var viewportWidth = document.documentElement.clientWidth;
 
-		if(document.documentElement.clientWidth > 1000 && viewportWidth <= 1000){
+		if(document.documentElement.clientWidth > 2000 && viewportWidth <= 2000){
 			entriesListShown = true;
 			wrapper.className = wrapper.className.replace(/ listHidden/g, "");
 		}
 
-		if(document.documentElement.clientWidth < 1000 && viewportWidth >= 1000){
+		if(document.documentElement.clientWidth < 2000 && viewportWidth >= 2000){
 			entriesListShown = false;
 			wrapper.className += " listHidden";
 		}
