@@ -112092,7 +112092,7 @@ var atlas = [
     },
 
 	{
-    	"id": 0,
+    	"id": 1942,
     	"name": "Merkel's hand gesture",
     	"description": "The typical hand gesture of Germany's former chancellor Angela Merkel.",
     	"website": "",
