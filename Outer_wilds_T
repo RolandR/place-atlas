@@ -1,0 +1,25 @@
+    {
+    	"id": 0,
+    	"name": "Outer Wilds T",
+    	"description": "Requested by someone in the Outer Wilds discord, for a friend of theirs in the hospital. Due to attacks by a few unscrupulous individuals, this T has been immortalized as an emote.",
+    	"website": "",
+    	"subreddit": "r/outerwilds",
+    	"center": [
+    		388.5,
+    		946.5
+    	],
+    	"path": [
+    		[
+    			387.5,
+    			945.5
+    		],
+    		[
+    			389.5,
+    			948.5
+    		],
+    		[
+    			389.5,
+    			945.5
+    		]
+    	]
+    }
