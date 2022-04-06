@@ -18,7 +18,7 @@
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 	For more information, see:
-	https://draemm.li/various/place-atlas/license.txt
+	http://place-atlas.stefanocoding.me/license.txt
 
 	========================================================================
 */
@@ -30,8 +30,8 @@ var previousZoomOrigin = [0, 0];
 var previousScaleZoomOrigin = [0, 0];
 
 var backgroundCanvas = document.createElement("canvas");
-backgroundCanvas.width = 1000;
-backgroundCanvas.height = 1000;
+backgroundCanvas.width = 2000;
+backgroundCanvas.height = 2000;
 var backgroundContext = backgroundCanvas.getContext("2d");
 
 function updateLines(){
@@ -162,12 +162,12 @@ function initView(){
 		highlightEntryFromUrl();
 	}*/
 
-	if(document.documentElement.clientWidth > 1000){
+	if(document.documentElement.clientWidth > 2000){
 		entriesListShown = true;
 		wrapper.className = wrapper.className.replace(/ listHidden/g, "");
 	}
 
-	if(document.documentElement.clientWidth < 1000){
+	if(document.documentElement.clientWidth < 2000){
 		entriesListShown = false;
 		wrapper.className += " listHidden";
 	}
@@ -257,36 +257,6 @@ function initView(){
 		}
 	}
 
-	function createInfoBlock(entry){
-		var element = document.createElement("div");
-		element.className = "object";
-
-		var html = "<h2><a href=\"?id="+entry.id+"\">"+entry.name+"</a></h2>";
-		
-		if(entry.description){
-			html += "<p>"+entry.description+"</p>";
-		}
-		if(entry.website){
-			html += "<a target=\"_blank\" href="+entry.website+">Website</a>";
-		}
-		if(entry.subreddit){
-			var subreddits = entry.subreddit.split(",");
-			
-			for(var i in subreddits){
-				var subreddit = subreddits[i].trim();
-				if(subreddit.substring(0, 2) == "r/"){
-					subreddit = "/" + subreddit;
-				} else if(subreddit.substring(0, 1) != "/"){
-					subreddit = "/r/" + subreddit;
-				}
-				html += "<a target=\"_blank\" href=https://reddit.com"+subreddit+">"+subreddit+"</a>";
-			}
-		}
-		element.innerHTML += html;
-		
-		return element;
-	}
-
 	function highlightEntryFromUrl(){
 
 		var objectsContainer = document.getElementById("objectsList");
@@ -297,7 +267,7 @@ function initView(){
 		if(args){
 			id = args.split("id=")[1];
 			if(id){
-				id = parseInt(id.split("&")[0]);
+				id = id.split("&")[0];
 			}
 		}
 
@@ -310,7 +280,7 @@ function initView(){
 		if (entry.length === 1){
 			entry = entry[0];
 
-			document.title = entry.name + " on the /r/place Atlas";
+			document.title = entry.name + " on the 2022 /r/place Atlas";
 			
 			var infoElement = createInfoBlock(entry);
 			objectsContainer.innerHTML = "";
@@ -329,8 +299,8 @@ function initView(){
 			];
 
 			scaleZoomOrigin = [
-				 1000/2 - entry.center[0]// + container.offsetLeft
-				,1000/2 - entry.center[1]// + container.offsetTop
+				2000/2 - entry.center[0]// + container.offsetLeft
+				,2000/2 - entry.center[1]// + container.offsetTop
 			];
 
 			//console.log(zoomOrigin);
@@ -353,7 +323,7 @@ function initView(){
 				,(e.clientY - (container.clientHeight/2 - innerContainer.clientHeight/2 + zoomOrigin[1] + container.offsetTop))/zoom
 			];
 
-			if(pos[0] <= 1100 && pos[0] >= -100 && pos[0] <= 1100 && pos[0] >= -100){
+			if(pos[0] <= 2200 && pos[0] >= -100 && pos[0] <= 2200 && pos[0] >= -100){
 				var newHovered = [];
 				for(var i = 0; i < atlas.length; i++){
 					if(pointIsInPolygon(pos, atlas[i].path)){
@@ -538,8 +508,8 @@ function initView(){
 					]
 
 					scaleZoomOrigin = [
-						 1000/2  - this.entry.center[0]
-						,1000/2  - this.entry.center[1]
+						2000/2  - this.entry.center[0]
+						,2000/2  - this.entry.center[1]
 					]
 
 					//console.log(zoomOrigin);
@@ -578,8 +548,8 @@ function initView(){
 					]
 
 					scaleZoomOrigin = [
-						 1000/2  - this.entry.center[0]
-						,1000/2  - this.entry.center[1]
+						2000/2  - this.entry.center[0]
+						,2000/2  - this.entry.center[1]
 					]
 
 					previousZoomOrigin = [zoomOrigin[0], zoomOrigin[1]];
@@ -733,6 +703,8 @@ function initView(){
 	});
 
 	container.addEventListener("touchend", function(e){
+		e.preventDefault()
+
 		//console.log(e);
 		//console.log(e.changedTouches[0].clientX);
 		if(e.changedTouches.length == 1){
@@ -760,12 +732,12 @@ function initView(){
 
 		var viewportWidth = document.documentElement.clientWidth;
 
-		if(document.documentElement.clientWidth > 1000 && viewportWidth <= 1000){
+		if(document.documentElement.clientWidth > 2000 && viewportWidth <= 2000){
 			entriesListShown = true;
 			wrapper.className = wrapper.className.replace(/ listHidden/g, "");
 		}
 
-		if(document.documentElement.clientWidth < 1000 && viewportWidth >= 1000){
+		if(document.documentElement.clientWidth < 2000 && viewportWidth >= 2000){
 			entriesListShown = false;
 			wrapper.className += " listHidden";
 		}
