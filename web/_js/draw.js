@@ -19,7 +19,7 @@
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 	For more information, see:
-	https://draemm.li/various/place-atlas/license.txt
+	http://place-atlas.stefanocoding.me/license.txt
 	
 	========================================================================
 */
@@ -47,8 +47,8 @@ function initDraw(){
 	var shiftPressed = false;
 
 	var backgroundCanvas = document.createElement("canvas");
-	backgroundCanvas.width = 1000;
-	backgroundCanvas.height = 1000;
+	backgroundCanvas.width = 2000;
+	backgroundCanvas.height = 2000;
 	var backgroundContext = backgroundCanvas.getContext("2d");
 
 	var highlightUncharted = true;
@@ -202,6 +202,10 @@ function initDraw(){
 		exportOverlay.style.display = "none";
 	});
 
+	exportCloseButton.addEventListener("click", function(e){
+		exportDirectPost();
+	})
+
 	document.getElementById("highlightUncharted").addEventListener("click", function(e){
 		highlightUncharted = this.checked;
 		render(path);
@@ -223,12 +227,16 @@ function initDraw(){
 		jsonString = jsonString.join("\n    ");
 		jsonString = "    "+jsonString;
 		textarea.value = jsonString;
+		console.log("a");
+		var directPostUrl = "https://www.reddit.com/r/placeAtlas2/submit?selftext=true&title=New%20Submission&text="+encodeURIComponent(document.getElementById("exportString").value);
+		document.getElementById("exportDirectPost").href=directPostUrl;
 
 		exportOverlay.style.display = "flex";
 		
 		textarea.focus();
 		textarea.select();
 	}
+
 
 	function calculateCenter(path){
 
