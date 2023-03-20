@@ -10,11 +10,6 @@ Migrator script from old atlas format to remastered atlas format.
 import re
 import json
 
-END_IMAGE = 166
-INIT_CANVAS_RANGE = (1, END_IMAGE)
-EXPANSION_1_RANGE = (56, END_IMAGE)
-EXPANSION_2_RANGE = (109, END_IMAGE)
-
 COMMATIZATION = re.compile(r'[,;& ]+(?:and)?[,;& ]*?')
 FS_REGEX = re.compile(r'(?:(?:(?:(?:https?:\/\/)?(?:(?:www|old|new|np)\.)?)?reddit\.com)?\/)?[rR]\/([A-Za-z0-9][A-Za-z0-9_]{1,20})(?:\/[^" ]*)*')
 
@@ -33,23 +28,13 @@ def migrate_atlas_format(entry: dict):
 
 	if isinstance(center, list):
 		
-		# Use the center to figure out which canvas expansion the entry is in.
-		if center[1] > 1000:
-			time_range = EXPANSION_2_RANGE
-		elif center[0] > 1000:
-			time_range = EXPANSION_1_RANGE
-		else:
-			time_range = INIT_CANVAS_RANGE
-
-		time_key = '%d-%d, T' % time_range
-
 		new_entry = {
 		**new_entry,
 		"center": {
-			time_key: center
+			"0": center
 		},
 		"path": {
-			time_key: path
+			"0": path
 		}
 		}
 

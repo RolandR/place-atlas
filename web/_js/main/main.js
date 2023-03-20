@@ -1,22 +1,28 @@
 /*
 	========================================================================
-	The 2022 r/place Atlas
+	The 2017 r/place Atlas
 
-	An atlas of Reddit's 2022 r/place, with information to each
+	An atlas of Reddit's 2017 r/place, with information to each
 	artwork	of the canvas provided by the community.
 
 	Copyright (c) 2017 Roland Rytz <roland@draemm.li>
 	Copyright (c) 2022 Place Atlas contributors
 
 	Licensed under the GNU Affero General Public License Version 3
-	https://place-atlas.stefanocoding.me/license.txt
+	https://2017.place-atlas.stefanocoding.me/license.txt
 	========================================================================
 */
 
 const innerContainer = document.getElementById("innerContainer")
 const container = document.getElementById("container")
 const canvas = document.getElementById("highlightCanvas")
+const canvasImage = document.getElementById('image')
 const context = canvas.getContext("2d")
+
+canvas.width = canvasSize.x
+canvas.height = canvasSize.y
+canvasImage.width = canvasSize.x
+canvasImage.height = canvasSize.y
 
 let zoom = 1
 
@@ -138,7 +144,7 @@ async function init() {
 		}
 	} else if (mode.startsWith("diff")) {
 		try {
-			const liveResp = await fetch("https://place-atlas.stefanocoding.me/atlas.json")
+			const liveResp = await fetch(`https://${prodDomain}/atlas.json`)
 			let liveJson = await liveResp.json()
 			liveJson = updateAtlasAll(liveJson)
 

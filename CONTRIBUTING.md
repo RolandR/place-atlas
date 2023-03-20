@@ -2,15 +2,15 @@
 
 This project is open source, and contributions are welcome. In fact, the Atlas relies on user contributions.
 
-You may contribute to the project by submitting a Pull Request on the GitHub repo or sending your submissions through [Reddit](https://www.reddit.com/r/placeAtlas2). Other than than, you cau use [Discord](https://discord.gg/pJkm23b2nA) or [Reddit](https://www.reddit.com/r/placeAtlas2) for help.
+You may contribute to the project by submitting a Pull Request on the GitHub repo or sending your submissions through [Reddit](https://www.reddit.com/r/placeAtlas). Other than than, you cau use [Discord](https://discord.gg/pJkm23b2nA) or [Reddit](https://www.reddit.com/r/placeAtlas) for help.
 
 ## New Atlas Entries
 
 > **Warning**: **WE ONLY ACCEPT NEW ENTRIES ON REDDIT!**
 
-To contribute to the map, we require a certain format for artwork region and labels. This can be generated on [the drawing mode](https://place-atlas.stefanocoding.me?mode=draw) on the website. 
+To contribute to the map, we require a certain format for artwork region and labels. This can be generated on [the drawing mode](https://2017.place-atlas.stefanocoding.me?mode=draw) on the website. 
 
-To add a new entry, go to [the drawing mode](https://place-atlas.stefanocoding.me?mode=draw) and draw a shape/polygon around the region you'd like to describe. You can use the <kbd>Undo</kbd>, <kbd>Redo</kbd>, and <kbd>Reset</kbd> buttons to help you creating a good polygon. Make sure that the lines you're drawing don't form a [self-intersecting polygon](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Complex_polygon.svg/288px-Complex_polygon.svg.png). 
+To add a new entry, go to [the drawing mode](https://2017.place-atlas.stefanocoding.me?mode=draw) and draw a shape/polygon around the region you'd like to describe. You can use the <kbd>Undo</kbd>, <kbd>Redo</kbd>, and <kbd>Reset</kbd> buttons to help you creating a good polygon. Make sure that the lines you're drawing don't form a [self-intersecting polygon](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Complex_polygon.svg/288px-Complex_polygon.svg.png). 
 
 Multiple periods can be added to represent the changing state of the artwork on different times. You can set the start and end period, as well as chosing the appropriate canvas variations. You can also copy the polygon from one period to the other, duplicating a period to be edited later, as well as deleting a period (if there is more than one). An alert is also shown if there are errors for assistance.
 
@@ -25,7 +25,7 @@ When you're happy with the shape you've drawn, press <kbd>Finish</kbd>. You will
 
 All fields but the name are optional. A country flag doesn't necessarily need a description, for example.
 
-Once you've entered all the information, you'll be presented with a pop-up window containing some [JSON](https://en.wikipedia.org/wiki/JSON)-formatted data. You can press the <kbd>Press Direct to Reddit</kbd> button, or copy the entire JSON text and [create a new text post on the subreddit](https://www.reddit.com/r/placeAtlas2/submit). Remember to flair your post with "New Entry".
+Once you've entered all the information, you'll be presented with a pop-up window containing some [JSON](https://en.wikipedia.org/wiki/JSON)-formatted data. You can press the <kbd>Press Direct to Reddit</kbd> button, or copy the entire JSON text and [create a new text post on the subreddit](https://www.reddit.com/r/placeAtlas/submit). Remember to flair your post with "New Entry".
 
 ## Edits To Atlas Data
 
@@ -72,7 +72,7 @@ Edits are also welcome on this repository through GitHub. You may use GitHub for
 
 Upon creating a fork of this repository and pushing the changes, create a Pull Request against the `cleanup` branch. A member will merge the pull request if it is adequate.
 
-To help find duplicates, [use the Overlap mode](https://place-atlas.stefanocoding.me?mode=overlap).
+To help find duplicates, [use the Overlap mode](https://2017.place-atlas.stefanocoding.me?mode=overlap).
 
 ## Development
 
