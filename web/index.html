@@ -1,29 +1,29 @@
 <!--
-	The 2022 r/place Atlas
+	The 2017 r/place Atlas
 	Copyright (c) 2017 Roland Rytz <roland@draemm.li>
 	Copyright (c) 2022 Place Atlas contributors
-	Licensed under AGPL-3.0 (https://place-atlas.stefanocoding.me/license.txt)
+	Licensed under AGPL-3.0 (https://2017.place-atlas.stefanocoding.me/license.txt)
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>The 2022 r/place Atlas</title>
-		<meta name="description" content="An interactive map of Reddit's 2022 r/place, with information to each artwork of the canvas provided by the community.">
-		<meta name="author" content="Place Atlas contributors (original by Roland Rytz)">
+		<title>The 2017 r/place Atlas</title>
+		<meta name="description" content="An atlas of Reddit's 2017 r/place, with information to each artwork of the canvas provided by the community.">
+		<meta name="author" content="Roland Rytz">
 		<meta name="application-name" content="The r/place Atlas 2022">
 		<meta name="robots" content="index, follow">
 		
-		<meta property="og:title" content="The 2022 r/place Atlas">
+		<meta property="og:title" content="The 2017 r/place Atlas">
 		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://place-atlas.stefanocoding.me/">
-		<meta property="og:image" content="https://place-atlas.stefanocoding.me/_img/logo.png">
+		<meta property="og:url" content="https://2017.place-atlas.stefanocoding.me/">
+		<meta property="og:image" content="https://2017.place-atlas.stefanocoding.me/_img/logo.png">
 		<meta property="og:image:type" content="image/png">
 		<meta property="og:image:width" content="512">
 		<meta property="og:image:height" content="512">
 		<meta property="og:image:alt" content="The r/place Atlas logo">
-		<meta property="og:description" content="An interactive map of Reddit's 2022 r/place, with information to each artwork of the canvas provided by the community.">
+		<meta property="og:description" content="An atlas of Reddit's 2017 r/place, with information to each artwork of the canvas provided by the community.">
 		
 		<!-- <meta name="google-site-verification" content="gZGHpBSMzffAbIn0qB8b00We6EwSGkDTfDoQVv-NWss"/> -->
 		
@@ -33,22 +33,19 @@
 		<meta name="theme-color" media="(prefers-color-scheme: light)" content="white">
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#222">
 		
-		<link rel="apple-touch-icon" href="_img/apple-touch-icon.png" sizes="180x180">
-		<link rel="icon alternate" href="_img/favicon.png" type="image/png" class="js-site-favicon">
-		<link rel="icon" href="_img/favicon.svg" type="image/svg+xml" class="js-site-favicon">
+		<link rel="apple-touch-icon" href="_img/logo.png" sizes="180x180">
+		<link rel="icon alternate" href="_img/logo.png" type="image/png" class="js-site-favicon">
+		<link rel="icon" href="_img/logo.png" type="image/svg+xml" class="js-site-favicon">
 		
 		<link rel="stylesheet" href="./_css/style.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/css/bootstrap-dark.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-		<link rel="manifest" href="./manifest.webmanifest">
-		<script type="module" src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate/dist/pwa-update.js"></script>
-		<script src="./_js/favicon.js" defer></script>
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
 				"@type": "WebSite",
-				"name": "The 2022 r/place Atlas",
-				"url": "https://place-atlas.stefanocoding.me/",
+				"name": "The 2017 r/place Atlas",
+				"url": "https://2017.place-atlas.stefanocoding.me/",
 				"author": [
 					   {
 							"@type": "Person",
@@ -62,20 +59,9 @@
 							"nationality": "Switzerland"
 					},
 					{
-							"@type": "Person",
-							"name": "Stefano Haagmans",
-							"email": "stefano@stefanocoding.me",
-							"url": "https://stefanocoding.me",
-							"familyName": "Haagmans",
-							"givenName": "Stefano",
-							"alternateName": "Codixer",
-							"gender": "Male",
-							"nationality": "Netherlands"
-					},
-					{
 						"@type": "Organization",
 						"name": "Place Atlas",
-						"alternateName": "r/placeatlas2",
+						"alternateName": "r/placeAtlas",
 						"url": "https://github.com/placeAtlas",
 						"image": "http://place-atlas.stefanocoding.me/_img/logo.png",
 						"founder": {
@@ -93,13 +79,13 @@
 					}
 				],
 				"copyrightYear": 2017,
-				"license": "https://place-atlas.stefanocoding.me/license.txt",
+				"license": "https://2017.place-atlas.stefanocoding.me/license.txt",
 				"inLanguage": "English",
 				"isAccessibleForFree": true,
 				"keywords": "reddit, r/place, place, experiment",
-				"thumbnailUrl": "https://place-atlas.stefanocoding.me/_img/logo.png",
-				"image": "https://place-atlas.stefanocoding.me/_img/logo.png",
-				"description": "An interactive map of Reddit's 2022 r/place, with information to each artwork of the canvas."
+				"thumbnailUrl": "https://2017.place-atlas.stefanocoding.me/_img/logo.png",
+				"image": "https://2017.place-atlas.stefanocoding.me/_img/logo.png",
+				"description": "An atlas of Reddit's 2017 r/place, with information to each artwork of the canvas."
 			}
 		</script>
 	</head>
@@ -108,11 +94,9 @@
 			<nav id="main-navbar" class="navbar navbar-expand-md fixed-top bg-body border-bottom">
 				<div class="container-fluid">
 					<a class="navbar-brand text-body d-flex align-items-center" href="./">
-						<picture>
-							<source srcset="./_img/favicon-dark.svg" media="(prefers-color-scheme: dark)">
-							<img class="d-block me-2" height="32" width="32" src="./_img/favicon.svg" alt="">
-						</picture>
-						The 2022 r/place Atlas
+						<img class="d-block me-2" height="32" width="32" src="./_img/logo.png" alt="">
+						The 2017 r/place Atlas
+						<span class="badge bg-warning text-dark d-none d-md-inline-block ms-2">Beta</span>
 					</a>
 					<button class="navbar-toggler text-body collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="bi bi-list" aria-hidden="true"></i>
@@ -141,6 +125,9 @@
 							<li class="nav-item col-6 col-md-auto">
 								<a class="nav-link" href="./about.html">About</a>
 							</li>
+							<li>
+								<a class="nav-link px-3 bg-warning text-dark d-md-none rounded" href="https://github.com/placeAtlas/atlas-2017/issues">Beta</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -155,7 +142,7 @@
 						<noscript>
 							<p>Sorry, you need JavaScript to view the Atlas.</p>
 							<p>All JavaScript on this site is licensed under either the MIT or AGPL license.</p>
-							<p><a href="https://github.com/placeAtlas/atlas">See the source on GitHub</a></p>
+							<p><a href="https://github.com/placeAtlas/atlas-2017">See the source on GitHub</a></p>
 						</noscript>
 					</div>
 				</div>
@@ -190,7 +177,7 @@
 							<i class="bi bi-discord" aria-hidden="true"></i>
 							Discord
 						</a>
-						<a class="btn btn-outline-primary" href="https://www.reddit.com/r/placeAtlas2/" target="_blank" rel="noopener noreferrer">
+						<a class="btn btn-outline-primary" href="https://www.reddit.com/r/placeAtlas/" target="_blank" rel="noopener noreferrer">
 							<i class="bi bi-reddit" aria-hidden="true"></i>
 							Reddit
 						</a>
@@ -247,7 +234,7 @@
 					</datalist>
 				</div>
 				<div id="author" class="bg-body d-flex align-items-center justify-content-center py-1 px-2 rounded shadow" style="--bs-bg-opacity: .9;">
-					<span style="font-size: 0.7rem;">Code by <a href="https://github.com/placeAtlas" target="_blank" rel="noopener noreferrer">Place Atlas</a>. Source on <a href="https://github.com/placeAtlas/atlas" target="_blank" rel="noopener noreferrer">GitHub</a>. Site powered by <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">Netlify</a>.</span>
+					<span style="font-size: 0.7rem;">Code by <a href="https://draemm.li/">Roland Rytz</a>. Continued by <a href="https://github.com/placeAtlas" target="_blank" rel="noopener noreferrer">the Place Atlas team</a>. Source on <a href="https://github.com/placeAtlas/atlas-2017" target="_blank" rel="noopener noreferrer">GitHub</a>. Site powered by <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">Netlify</a>.</span>
 				</div>
 			</div>
 			<div class="offcanvas offcanvas-start bg-body" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasDraw" aria-labelledby="offcanvasDrawLabel">
@@ -287,7 +274,7 @@
 						<button type="button" class="btn btn-primary d-block mx-auto" id="periodsAdd">Add Period</button>
 					</div>
 					<div id="hint">
-						<p class="text-center">Please read <a href="https://github.com/placeAtlas/atlas/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">this guide</a> for instructions.</p>
+						<p class="text-center">Please read <a href="https://github.com/placeAtlas/atlas-2017/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">this guide</a> for instructions.</p>
 						<hr>
 						<p>You can suggest new entries to the Atlas for art that isn't mapped yet, or update entries by editing it.</p>
 						<p>Click anywhere on the image to start drawing a shape. Switch between periods by adding a period, and/or seek through the timeline.</p>
@@ -344,7 +331,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body d-flex flex-column">
-					<p>Use the Post Direct to Reddit button or manually copy the text below and submit it as a new text post to <a href="https://www.reddit.com/r/placeAtlas2/" target="_blank" rel="noopener noreferrer">r/placeAtlas2</a> on Reddit.</p>
+					<p>Use the Post Direct to Reddit button or manually copy the text below and submit it as a new text post to <a href="https://www.reddit.com/r/placeAtlas/" target="_blank" rel="noopener noreferrer">r/placeAtlas</a> on Reddit.</p>
 					<p>Don't forget to flair it with the <span class="badge rounded-pill bg-primary"><i class="bi bi-tag" aria-hidden="true"></i> <span id="redditFlair">New Entry</span></span> tag.</p>
 					<p>We will then check it and add it to the Atlas.</p>
 					<textarea class="form-control flex-grow-1" cols="40" rows="20" id="exportString" title="Raw JSON string" readonly></textarea>
@@ -364,27 +351,27 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<p>Current 2022 Atlas Maintainers:</p>
-						<a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://paypal.me/placeAtlas/5">
-							<i class="bi bi-paypal" aria-hidden="true"></i>
-							PayPal
-						</a>
-						<a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://www.patreon.com/placeAtlas">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 .48v23.04h4.22V.48zm15.385 0c-4.764 0-8.641 3.88-8.641 8.65 0 4.755 3.877 8.623 8.641 8.623 4.75 0 8.615-3.868 8.615-8.623C24 4.36 20.136.48 15.385.48z"/></svg>
-							Patreon
-						</a>
-						<a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://ko-fi.com/placeatlas">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
-							Ko-Fi
-						</a>
-						<hr>
 						<p>Original 2017 Atlas Developer (draemmli aka Roland Rytz): </p>
 						<a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://paypal.me/draemmli">
 							<i class="bi bi-paypal" aria-hidden="true"></i>
 							PayPal
 						</a>
 					</div>
-					<div class="modal-footer">
+					<hr>
+					<p>Current 2022 Atlas Maintainers:</p>
+					<a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://paypal.me/placeAtlas/5">
+						<i class="bi bi-paypal" aria-hidden="true"></i>
+						PayPal
+					</a>
+					<a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://www.patreon.com/placeAtlas">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 .48v23.04h4.22V.48zm15.385 0c-4.764 0-8.641 3.88-8.641 8.65 0 4.755 3.877 8.623 8.641 8.623 4.75 0 8.615-3.868 8.615-8.623C24 4.36 20.136.48 15.385.48z"/></svg>
+						Patreon
+					</a>
+					<a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://ko-fi.com/placeatlas">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
+						Ko-Fi
+					</a>
+				<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 					</div>
 				</div>
@@ -449,6 +436,5 @@
 		<script src="./_js/main/main.js"></script>
 		<!-- <script src="./_js/main/stats.js"></script>
 		<script src="./_js/minified.js"></script> -->
-		<pwa-update swpath="./sw.js"></pwa-update>
 	</body>
 </html>

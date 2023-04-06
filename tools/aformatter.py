@@ -143,12 +143,15 @@ def remove_duplicate_points(entry: dict):
 	"""
 	Removes points from paths that occur twice after each other
 	"""
-
-	if not "path" in entry:
+	if not "path" in entry or len(entry['path']) == 0:
 		return entry
-
-	for key in entry['path']:
+	
+	keys = list(entry['path'])
+	for key in keys:
 		path: list = entry['path'][key]
+		if len(path) == 0:
+			del entry['path'][key]
+			continue
 		previous: list = path[0]
 		for i in range(len(path)-1, -1, -1):
 			current: list = path[i]
@@ -240,13 +243,13 @@ def convert_subreddit_to_website(entry: dict):
 			if re.match(CSTW_REGEX["website"], entry["links"]["subreddit"][i]):
 				if "website" in entry["links"] and entry["links"]["subreddit"][i] in entry["links"]["website"]:
 					entry["links"]["subreddit"][i] = ""
-				elif not "website" in entry["links"] or len(entry["website"]) == 0:
+				elif not "website" in entry["links"] or len(entry["links"]["website"]) == 0:
 					if not "website" in entry["links"]:
 						entry["links"]["website"] = []
 					entry["links"]["website"].append(entry["links"]["subreddit"][i])
 					entry["links"]["subreddit"][i] = ""
 			elif re.match(CSTW_REGEX["user"], entry["links"]["subreddit"][i]):
-				if not "website" in entry["links"] or len(entry["website"]) == 0:
+				if not "website" in entry["links"] or len(entry["links"]["website"]) == 0:
 					username = re.match(CSTW_REGEX["user"], entry["links"]["subreddit"][i]).group(1)
 					if not "website" in entry["links"]:
 						entry["links"]["website"] = []
@@ -320,7 +323,7 @@ def validate(entry: dict):
 		return_status = 3
 		entry['id'] = '[MISSING_ID]'
 
-	if "path" in entry:
+	if "path" in entry and entry['path']:
 		for key in entry['path']:
 			path = entry['path'][key]
 			if len(path) == 0:
