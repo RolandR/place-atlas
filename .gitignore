@@ -1,9 +1,44 @@
-
+# Secrets
 credentials
 praw
-temp.js
-users.html
-oldusers.html
-web/_js/minified.js
+
+# Temporary files
+temp-atlas.json
+temp-atlas-manual.*
+temp.*
+temp-read-ids.txt
 allCharacters.txt
 combined.js
+
+# Excluded files
+*.DS_Store
+.vscode/
+
+# Build files
+node_modules/
+dist*/
+
+# Cache folders
+*.pyc
+.cache
+.parcel-cache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Enviroment folders
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
