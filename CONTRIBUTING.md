@@ -2,7 +2,7 @@
 
 This project is open source, and contributions are welcome. In fact, the Atlas relies on user contributions.
 
-You may contribute to the project by submitting a Pull Request on the GitHub repo or sending your submissions through [Reddit](https://www.reddit.com/r/placeAtlas2). Other than than, you cau use [Discord](https://discord.gg/pJkm23b2nA) or [Reddit](https://www.reddit.com/r/placeAtlas2) for help.
+You may contribute to the project by submitting a Pull Request on the GitHub repo or sending your submissions through [Reddit](https://www.reddit.com/r/placeAtlas). Other than than, you cau use [Discord](https://discord.gg/pJkm23b2nA) or [Reddit](https://www.reddit.com/r/placeAtlas) for help.
 
 ## New Atlas entries
 
@@ -26,7 +26,7 @@ When you're happy with the shape you've drawn, press <kbd>Finish</kbd>. You will
 
 All fields but the name are optional. For example, a country flag doesn't necessarily need a description.
 
-Once you've entered all the information, you'll be presented with a pop-up window containing some [JSON](https://en.wikipedia.org/wiki/JSON)-formatted data. You can press the <kbd>Post Direct to Reddit</kbd> button, or copy the entire JSON text and [create a new text post on the subreddit](https://www.reddit.com/r/placeAtlas2/submit). Remember to flair your post with <kbd>New Entry</kvd>.
+Once you've entered all the information, you'll be presented with a pop-up window containing some [JSON](https://en.wikipedia.org/wiki/JSON)-formatted data. You can press the <kbd>Post Direct to Reddit</kbd> button, or copy the entire JSON text and [create a new text post on the subreddit](https://www.reddit.com/r/placeAtlas/submit). Remember to flair your post with <kbd>New Entry</kvd>.
 
 ## Edits to Atlas entries
 

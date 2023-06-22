@@ -1,10 +1,12 @@
 #!/usr/bin/python
 
+from io import TextIOWrapper
+from typing import List
 import re
 import json
 import math
 import traceback
-from typing import List
+import tqdm
 
 END_NORMAL_IMAGE = "164"
 END_WHITEOUT_IMAGE = "166"
@@ -143,15 +145,12 @@ def remove_duplicate_points(entry: dict):
 	"""
 	Removes points from paths that occur twice after each other
 	"""
-	if not "path" in entry or len(entry['path']) == 0:
+
+	if not "path" in entry:
 		return entry
-	
-	keys = list(entry['path'])
-	for key in keys:
+
+	for key in entry['path']:
 		path: list = entry['path'][key]
-		if len(path) == 0:
-			del entry['path'][key]
-			continue
 		previous: list = path[0]
 		for i in range(len(path)-1, -1, -1):
 			current: list = path[i]
@@ -243,13 +242,13 @@ def convert_subreddit_to_website(entry: dict):
 			if re.match(CSTW_REGEX["website"], entry["links"]["subreddit"][i]):
 				if "website" in entry["links"] and entry["links"]["subreddit"][i] in entry["links"]["website"]:
 					entry["links"]["subreddit"][i] = ""
-				elif not "website" in entry["links"] or len(entry["links"]["website"]) == 0:
+				elif not "website" in entry["links"] or len(entry["website"]) == 0:
 					if not "website" in entry["links"]:
 						entry["links"]["website"] = []
 					entry["links"]["website"].append(entry["links"]["subreddit"][i])
 					entry["links"]["subreddit"][i] = ""
 			elif re.match(CSTW_REGEX["user"], entry["links"]["subreddit"][i]):
-				if not "website" in entry["links"] or len(entry["links"]["website"]) == 0:
+				if not "website" in entry["links"] or len(entry["website"]) == 0:
 					username = re.match(CSTW_REGEX["user"], entry["links"]["subreddit"][i]).group(1)
 					if not "website" in entry["links"]:
 						entry["links"]["website"] = []
@@ -305,7 +304,6 @@ def floor_points(entry: dict):
 
 	return entry
 
-
 def validate(entry: dict):
 	"""
 	Validates the entry. Catch errors and tell warnings related to the entry.
@@ -323,7 +321,7 @@ def validate(entry: dict):
 		return_status = 3
 		entry['id'] = '[MISSING_ID]'
 
-	if "path" in entry and entry['path']:
+	if "path" in entry:
 		for key in entry['path']:
 			path = entry['path'][key]
 			if len(path) == 0:
@@ -342,16 +340,17 @@ def validate(entry: dict):
 			print(f"{key} of entry {entry['id']} is still invalid! {entry[key]}")
 	return return_status
 
-def per_line_entries(entries: list):
+def per_line_entries(entries: list, file: TextIOWrapper):
 	"""
 	Returns a string of all the entries, with every entry in one line.
 	"""
-	out = "[\n"
-	for entry in entries:
-		if entry:
-			out += json.dumps(entry, ensure_ascii=False) + ",\n"
-	out = out[:-2] + "\n]"
-	return out
+	file.write("[\n")
+	line_temp = ""
+	for entry in tqdm.tqdm(entries):
+		if line_temp:
+			file.write(line_temp + ",\n")
+		line_temp = json.dumps(entry, ensure_ascii=False)
+	file.write(line_temp + "\n]")
 
 def format_all(entry: dict, silent=False):
 	"""
@@ -390,7 +389,7 @@ def format_all(entry: dict, silent=False):
 	return entry
 
 def format_all_entries(entries):
-	for i in range(len(entries)):
+	for i in tqdm.trange(len(entries)):
 		try:
 			entry_formatted = format_all(entries[i], True)
 			validation_status = validate(entries[i])
@@ -402,8 +401,6 @@ def format_all_entries(entries):
 		except Exception:
 			print(f"Exception occured when formatting ID {entries[i]['id']}")
 			print(traceback.format_exc())
-		if not (i % 200):
-			print(f"{i} checked.")
 
 def go(path):
 
@@ -414,10 +411,10 @@ def go(path):
 
 	format_all_entries(entries)
 
-	print(f"{len(entries)} checked. Writing...")
+	print(f"Writing...")
 
 	with open(path, "w", encoding='utf-8', newline='\n') as f2:
-		f2.write(per_line_entries(entries))
+		per_line_entries(entries, f2)
 
 	print("Writing completed. All done.")
 
