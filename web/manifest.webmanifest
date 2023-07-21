@@ -12,7 +12,7 @@
 			"sizes": "300x300",
 			"type": "image/png",
 			"purpose": "any"
-		},
+		}
 	],
 	"theme_color": "#ff8800",
 	"lang": "en",
