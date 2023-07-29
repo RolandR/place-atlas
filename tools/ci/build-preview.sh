@@ -8,8 +8,10 @@ rm -rf .parcel-cache
 cp -r web/ dist-temp/
 
 npm i
+pip install -r tools/ci/requirements.txt
+
 python tools/ci/cdn_to_local.py
-python tools/ci/merge_out.py	# On previews, attempt to merge patches
+python tools/merge_out.py	# On previews, attempt to merge patches
 npx parcel build dist-temp/index.html dist-temp/**.html --dist-dir "dist" --no-source-maps --no-content-hash
 
 rm -rf dist-temp

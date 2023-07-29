@@ -9,6 +9,7 @@ const finishButton = document.getElementById("finishButton")
 const resetButton = document.getElementById("resetButton")
 const undoButton = document.getElementById("undoButton")
 const redoButton = document.getElementById("redoButton")
+const highlightUnchartedEl = document.getElementById("highlightUncharted")
 const highlightUnchartedLabel = document.getElementById("highlightUnchartedLabel")
 
 const drawControlsBody = document.getElementById("offcanvasDraw-drawControls")
@@ -122,7 +123,7 @@ function initDraw() {
 	let lShiftPressed = false
 	let shiftPressed = false
 
-	let highlightUncharted = false
+	let highlightUncharted = highlightUnchartedEl.checked
 
 	renderBackground(atlas)
 	applyView()
@@ -143,8 +144,8 @@ function initDraw() {
 		y -= container.offsetTop
 
 		const pos = [
-			~~((x - (container.clientWidth / 2 - innerContainer.clientWidth / 2 + zoomOrigin[0])) / zoom) + 0.5,
-			~~((y - (container.clientHeight / 2 - innerContainer.clientHeight / 2 + zoomOrigin[1])) / zoom) + 0.5
+			~~((x - (container.clientWidth / 2 - innerContainer.clientWidth / 2 + zoomOrigin[0])) / zoom) + 0.5 + canvasOffset.x,
+			~~((y - (container.clientHeight / 2 - innerContainer.clientHeight / 2 + zoomOrigin[1])) / zoom) + 0.5 + canvasOffset.y
 		]
 
 		if (shiftPressed && path.length > 0) {
@@ -266,7 +267,7 @@ function initDraw() {
 		}
 	})
 
-	document.getElementById("highlightUncharted").addEventListener("click", function () {
+	highlightUnchartedEl.addEventListener("click", function () {
 		highlightUncharted = this.checked
 		render(path)
 	})
@@ -336,7 +337,7 @@ function initDraw() {
 
 		let redditPostJsonString = "    " + prettyJsonString.split("\n").join("\n    ")
 		let redditPostUrl = `https://www.reddit.com/r/${instanceSubreddit}/submit?selftext=true&title=`
-		if (exportObject.id === 0) redditPostUrl += `✨%20${encodeURIComponent(exportObject.name ?? entry.name)}`
+		if (exportObject.id === -1) redditPostUrl += `✨%20${encodeURIComponent(exportObject.name ?? entry.name)}`
 		else redditPostUrl += `✏%20${encodeURIComponent(exportObject.name ?? entry.name)}`
 		redditPostUrl += "&text="
 
@@ -358,7 +359,7 @@ function initDraw() {
 		}
 		redditPostButton.href = redditPostUrl
 
-		if (exportObject.id === 0) document.getElementById("redditFlair").textContent = "New Entry"
+		if (exportObject.id === -1) document.getElementById("redditFlair").textContent = "New Entry"
 		else document.getElementById("redditFlair").textContent = "Edit Entry"
 
 		// GitHub
@@ -496,11 +497,11 @@ function initDraw() {
 			backgroundContext.beginPath()
 
 			if (path[0]) {
-				backgroundContext.moveTo(path[0][0], path[0][1])
+				backgroundContext.moveTo(path[0][0] - canvasOffset.x, path[0][1] - canvasOffset.y)
 			}
 
 			for (let p = 1; p < path.length; p++) {
-				backgroundContext.lineTo(path[p][0], path[p][1])
+				backgroundContext.lineTo(path[p][0] - canvasOffset.x, path[p][1] - canvasOffset.y)
 			}
 
 			backgroundContext.closePath()
@@ -528,11 +529,11 @@ function initDraw() {
 		highlightContext.beginPath()
 
 		if (path[0]) {
-			highlightContext.moveTo(path[0][0], path[0][1])
+			highlightContext.moveTo(path[0][0] - canvasOffset.x, path[0][1] - canvasOffset.y)
 		}
 
 		for (let i = 1; i < path.length; i++) {
-			highlightContext.lineTo(path[i][0], path[i][1])
+			highlightContext.lineTo(path[i][0] - canvasOffset.x, path[i][1] - canvasOffset.y)
 		}
 
 		highlightContext.closePath()
@@ -549,26 +550,13 @@ function initDraw() {
 
 	function updateHovering(e, tapped) {
 		if (dragging || (fixed && !tapped)) return
-		const pos = [
-			(e.clientX - (container.clientWidth / 2 - innerContainer.clientWidth / 2 + zoomOrigin[0] + container.offsetLeft)) / zoom,
-			(e.clientY - (container.clientHeight / 2 - innerContainer.clientHeight / 2 + zoomOrigin[1] + container.offsetTop)) / zoom
-		]
-
-		const coordsEl = document.getElementById("coords_p")
-
-		// Displays coordinates as zero instead of NaN
-		if (isNaN(pos[0])) {
-			coordsEl.textContent = "0, 0"
-		} else {
-			coordsEl.textContent = Math.ceil(pos[0]) + ", " + Math.ceil(pos[1])
-		}
+		updateCoordsDisplay(e)
 	}
 
 	const getEntry = id => {
 		if (!id) return
 		const entries = atlasAll.filter(entry => entry.id.toString() === id.toString())
 		if (entries.length === 1) return entries[0]
-		return
 	}
 
 	function addFieldButton(inputButton, inputGroup, array, index, name) {
@@ -727,7 +715,7 @@ function initDraw() {
 
 	function addWikiFields(link, index, array) {
 		const inputGroup = baseInputGroup.cloneNode()
-		wikiGroup.appendChild(inputGroup)
+		// wikiGroup.appendChild(inputGroup)
 
 		const inputField = baseInputField.cloneNode()
 		inputField.id = "wikiField" + index
@@ -813,10 +801,15 @@ function initDraw() {
 
 	initPeriodGroups()
 
-	zoom = 4
+	const hash = window.location.hash.substring(1)
+	const [,, hashX, hashY, hashZoom] = hash.split('/')
 
-	setView(center[0], center[1])
-
+	setView(
+		isNaN(hashX) ? center[0] : Number(hashX), 
+		isNaN(hashY) ? center[1] : Number(hashY), 
+		isNaN(hashZoom) ? 4 : Number(hashZoom)
+	)
+	
 	document.addEventListener('timeupdate', () => {
 		renderBackground(atlas)
 		updatePeriodGroups()
@@ -827,7 +820,7 @@ function initDraw() {
 		initPeriodGroups()
 	})
 
-	drawBackButton.href = "./" + formatHash(entry?.id, currentPeriod, currentPeriod, currentVariation)
+	drawBackButton.href = "./" + formatHash(entry?.id)
 
 	document.addEventListener('timeupdate', event => {
 		drawBackButton.href = "./" + formatHash(entry?.id, event.detail.period, event.detail.period, event.detail.variation)
@@ -1244,7 +1237,7 @@ function updateErrors() {
 		periodsStatus.textContent = "No paths available on this period!"
 	}
 
-	const { conflicts, insufficientPaths } = getErrors()
+	const { conflicts, insufficientPaths, outOfBounds, periodOutOfBounds } = getErrors()
 	let errorCount = 0
 	// console.log(conflicts, invalidPaths, allErrors)
 
@@ -1252,10 +1245,16 @@ function updateErrors() {
 		const { periodStatusEl, startPeriodViewEl, endPeriodViewEl, periodGroupEl } = el
 		periodStatusEl.textContent = ""
 		periodStatusEl.classList.add("d-none")
-		if (conflicts[index] !== undefined) {
+		if (conflicts?.[index]) {
 			periodStatusEl.textContent += `Period conflicts with path${conflicts[index].length === 1 ? "" : "s"} ${conflicts[index].join(", ")}.\n`
 		}
-		if (insufficientPaths[index] !== undefined) {
+		if (outOfBounds?.[index]) {
+			periodStatusEl.textContent += `A point is placed out of bounds.\n`
+		}
+		if (periodOutOfBounds?.[index]) {
+			periodStatusEl.textContent += `The period is out of bounds for editing.\n`
+		}
+		if (insufficientPaths?.[index] !== undefined) {
 			periodStatusEl.textContent += `Insufficient paths. Got ${insufficientPaths[index]}, need at least 3.\n`
 			startPeriodViewEl.disabled = true
 			endPeriodViewEl.disabled = true
@@ -1322,8 +1321,54 @@ function getConflicts() {
 
 }
 
+function getOutOfBounds() {
+
+	const outOfBounds = {}
+
+	pathCheck: for (const i in pathWithPeriods) {
+		const [period, path] = pathWithPeriods[i]
+		const [start, end, variation] = parsePeriod(period)
+		const checkedRefPeriods = []
+		for (let j = start; j <= end; j++) {
+			for (const [refPeriod, refRegion] of variationsConfig[variation]?.drawableRegions) {
+				if (!isOnPeriod(refPeriod[0], refPeriod[1], variation, j, variation) || checkedRefPeriods.includes(refPeriod)) continue
+				checkedRefPeriods.push(refPeriod)
+				const [ refX1, refY1, refX2, refY2 ] = refRegion
+				for (const point of path) {
+					const isOutOfBounds = !pointIsInPolygon(point, [[refX1 - 2, refY1 - 2], [refX2 + 2, refY1 - 2], [refX2 + 2, refY2 + 2], [refX1 - 2, refY2 + 2]])
+					if (!isOutOfBounds) continue
+					outOfBounds[i] = true
+					continue pathCheck
+				}
+			}
+		}
+	}
+
+	return outOfBounds
+
+}
+
+function getPeriodOutOfBounds() {
+
+	const outOfBounds = {}
+
+	pathCheck: for (const i in pathWithPeriods) {
+		const [period] = pathWithPeriods[i]
+		// console.log(i)
+		const [start, end, variation] = parsePeriod(period)
+		for (let j = start; j <= end; j++) {
+			const [refStart, refEnd] = variationsConfig[variation]?.drawablePeriods
+			if (isOnPeriod(refStart, refEnd, variation, j, variation)) continue
+			outOfBounds[i] = true
+			continue pathCheck
+		}
+	}
+
+	return outOfBounds
+
+}
+
 function getErrors() {
-	const conflicts = getConflicts()
 	const insufficientPaths = {}
 
 	pathWithPeriods.forEach(([period, path], i) => {
@@ -1334,8 +1379,10 @@ function getErrors() {
 	// console.info('invalid paths', invalidPaths)
 
 	return {
-		conflicts,
+		conflicts: getConflicts(),
 		insufficientPaths,
+		outOfBounds: getOutOfBounds(),
+		periodOutOfBounds: getPeriodOutOfBounds()
 	}
 }
 
