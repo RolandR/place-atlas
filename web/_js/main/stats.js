@@ -203,7 +203,7 @@ console.info("The " + topCount + " largest entries:")
 let outstring = ""
 
 for (let i = 0; i < topCount; i++) {
-	outstring += ((i + 1) + "|[" + atlas[atlas.length - i - 1].name + "](http://place-atlas.stefanocoding.me/?id=" + atlas[atlas.length - i - 1].id + ")|" + ~~atlas[atlas.length - i - 1].area + "|" + Math.round(atlas[atlas.length - i - 1].area / 100) / 100 + "%\n")
+	outstring += ((i + 1) + "|[" + atlas[atlas.length - i - 1].name + "](http://2017.place-atlas.stefanocoding.me/?id=" + atlas[atlas.length - i - 1].id + ")|" + ~~atlas[atlas.length - i - 1].area + "|" + Math.round(atlas[atlas.length - i - 1].area / 100) / 100 + "%\n")
 }
 
 console.info(outstring)
